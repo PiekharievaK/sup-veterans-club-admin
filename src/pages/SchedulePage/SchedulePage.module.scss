@@ -1,0 +1,46 @@
+.SchedulePage {
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.addBtn {
+  margin: 10px 0;
+  padding: 8px 16px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.addBtn:hover {
+  background-color: #0056b3;
+}
+
+.search {
+  padding: 8px 12px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.data {
+  background-color: #5bb64f93;
+}
