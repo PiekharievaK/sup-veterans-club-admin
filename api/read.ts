@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 const TOKEN = process.env.JSON_TOKEN;
 const REPO = process.env.REPO;
@@ -27,11 +27,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
     );
 
-    const content = Buffer.from(response.data.content, "base64").toString("utf-8");
+    const content = Buffer.from(response.data.content, "base64").toString(
+      "utf-8"
+    );
     const json = JSON.parse(content);
 
     res.status(200).json(json);
-  } catch (err: any) {
+  } catch (error) {
+    const err = error as AxiosError;
     console.error("Fetch error:", err.response?.data || err.message);
     res.status(500).json({
       message: "Failed to fetch file",
