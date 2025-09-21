@@ -6,6 +6,16 @@ const REPO = process.env.REPO;
 const BRANCH = process.env.BRANCH || "main";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
+
   const { path } = req.query;
 
   if (!path || typeof path !== "string") {
@@ -27,9 +37,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
     );
 
-    const content = Buffer.from(response.data.content, "base64").toString(
-      "utf-8"
-    );
+    const content = Buffer.from(response.data.content, "base64").toString("utf-8");
     const json = JSON.parse(content);
 
     res.status(200).json(json);
