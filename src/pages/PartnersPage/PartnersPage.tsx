@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import s from "./PartnersPage.module.scss";
 import { fetchJson } from "../../helpers/fetchData";
 import { saveJsonFile } from "../../helpers/updateData";
-import { Loader } from "../../components/Loader/Loader";
+import { useLoader } from "../../helpers/LoaderHook";
+
 
 export type Contact = {
   title: string;
@@ -25,9 +26,10 @@ export type Partner = {
 
 export const PartnersPage = () => {
   const [partners, setPartners] = useState<Partner[]>([]);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  const { setLoading } = useLoader();
 
   useEffect(() => {
     const load = async () => {
@@ -85,7 +87,6 @@ export const PartnersPage = () => {
           </div>
         ))}
       </div>
-      {loading && <Loader />}
     </div>
   );
 };

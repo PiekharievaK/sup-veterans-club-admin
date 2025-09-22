@@ -4,14 +4,14 @@ import { saveJsonFile } from "../../helpers/updateData";
 import s from "./ContactsPage.module.scss";
 import { Loader } from "../../components/Loader/Loader";
 import type { ContactsData, LocalizedData, RepresentativeLocalized, SocialContact } from "../../types/contacts";
-
+import { useLoader } from "../../helpers/LoaderHook";
 
 
 export const ContactsPage = () => {
   const [contactsData, setContactsData] = useState<ContactsData | null>(null);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const { setLoading } = useLoader();
 
   useEffect(() => {
     const load = async () => {
@@ -29,7 +29,7 @@ export const ContactsPage = () => {
   }, []);
 
   if (error) return <p className={s.error}>{error}</p>;
-  if (loading || !contactsData) return <Loader />;
+  if (!contactsData) return <Loader />;
 
 
   const combinedReps = contactsData.ua.representatives.map((uaRep, i) => ({

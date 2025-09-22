@@ -51,14 +51,14 @@ export const DonationModal = ({ donation, onSave, onClose }: Props) => {
     }));
   };
 
- const handleSave = () => {
-  if (!local.url.trim() || !local.icon.trim()) {
-    alert("Усі поля мають бути заповнені");
-    return;
-  }
+  const handleSave = () => {
+    if (!local.url.trim() || !local.icon.trim()) {
+      alert("Усі поля мають бути заповнені");
+      return;
+    }
 
-  onSave(local);
-};
+    onSave(local);
+  };
 
   return (
     <div className={s.overlay}>

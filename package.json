@@ -13,6 +13,8 @@
   "dependencies": {
     "@vercel/node": "^5.3.22",
     "axios": "^1.12.2",
+    "dotenv": "^17.2.2",
+    "gsap": "^3.13.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.9.1"

@@ -1,9 +1,9 @@
-type SocialLink = {
+export type SocialLink = {
   platform: "instagram" | "facebook" | string;
   url: string;
 };
 
-type LocalizedCoachData = {
+export type LocalizedCoachData = {
   name: string;
   role: string;
   description: string;

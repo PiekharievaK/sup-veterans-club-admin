@@ -7,14 +7,14 @@ import type { Instructor } from "../../types/coach";
 import type { Program } from "../../types/program";
 import { ScheduleCard } from "../../components/Schedule/Card/Card";
 import { ScheduleCardEdit } from "../../components/Schedule/CardEdit/CardEdit";
-import { Loader } from "../../components/Loader/Loader";
 import { generateUniqueId } from "../../helpers/createId";
+import { useLoader } from "../../helpers/LoaderHook";
+
 
 export const SchedulePage = () => {
     const [scheduleData, setScheduleData] = useState<ScheduleItem[]>([]);
     const [availableInstructors, setAvailableInstructors] = useState<Instructor[]>([]);
     const [availablePrograms, setAvailablePrograms] = useState<Program[]>([]);
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [addingNew, setAddingNew] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
@@ -27,9 +27,13 @@ export const SchedulePage = () => {
         timeStart: "",
         timeEnd: "",
         location: "main",
+        link: "",
         instructors: [],
         slots: 1,
     });
+
+    const { setLoading } = useLoader();
+
 
     const today = new Date().toISOString().split("T")[0]
 
@@ -133,6 +137,7 @@ export const SchedulePage = () => {
             timeStart: "",
             timeEnd: "",
             location: "main",
+            link: "",
             instructors: [],
             slots: 1,
         });
@@ -179,7 +184,7 @@ export const SchedulePage = () => {
         <div className={s.SchedulePage}>
             <h2>Розклад</h2>
 
-            {loading && <Loader />}
+
             {error && <p className={s.error}>Error: {error}</p>}
 
             <input
@@ -187,41 +192,40 @@ export const SchedulePage = () => {
                 placeholder="Пошук по даті, типу чи інструктору"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                disabled={loading}
+
             />
 
             <div className={s.filters}>
                 <button
                     className={filter === "all" ? s.active : ""}
                     onClick={() => setFilter("all")}
-                    disabled={loading}
                 >
                     Всі заходи
                 </button>
                 <button
                     className={filter === "past" ? s.active : ""}
                     onClick={() => setFilter("past")}
-                    disabled={loading}
+
                 >
                     Минулі
                 </button>
                 <button
                     className={filter === "upcoming" ? s.active : ""}
                     onClick={() => setFilter("upcoming")}
-                    disabled={loading}
+
                 >
                     Майбутні
                 </button>
                 <p>Усього заходів {scheduleData.length}</p>
                 <p>Заходів у фільтрі {filteredData.length}</p>
-                
+
             </div>
 
-            <button className={s.addBtn} onClick={() => setAddingNew(true)} disabled={loading}>
+            <button className={s.addBtn} onClick={() => setAddingNew(true)} >
                 Додати захід
             </button>
 
-            {addingNew && !loading && (
+            {addingNew && (
                 <ScheduleCardEdit
                     item={newItem}
                     instructors={availableInstructors}

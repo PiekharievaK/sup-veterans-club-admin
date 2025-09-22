@@ -1,7 +1,16 @@
-import s from "./Loader.module.scss"
+import s from "./Loader.module.scss";
+import { useLoader } from "../../helpers/LoaderHook";
 
 export const Loader = () => {
-    return <div className={s.loaderBox}>
-        <div className={s.loader}></div>
-    </div>
-}
+    const { isLoading } = useLoader();
+
+    if (!isLoading) return null;
+
+    return (
+        <div className={s.loaderBox}>
+            <div className={s.loader}></div>
+        </div>
+    );
+};
+
+

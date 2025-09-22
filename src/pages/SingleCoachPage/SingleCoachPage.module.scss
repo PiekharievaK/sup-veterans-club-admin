@@ -34,7 +34,6 @@
     }
   }
 
-
   .buttons {
     display: flex;
     gap: 1rem;
@@ -82,22 +81,21 @@
   }
 }
 
-
-  .socialRow {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
-    select,
-    input {
-      padding: 0.3rem;
-    }
-    button {
-      padding: 0.3rem 0.5rem;
-      background: #eee;
-      border: 1px solid #ccc;
-      cursor: pointer;
-    }
+.socialRow {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  select,
+  input {
+    padding: 0.3rem;
   }
+  button {
+    padding: 0.3rem 0.5rem;
+    background: #eee;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+}
 
 .photoRow {
   display: flex;

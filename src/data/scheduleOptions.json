@@ -1,5 +1,7 @@
 [
     { "id": "option1", "ua": "За попереднім записом", "en": "By appointment" },
-    { "id": "option2", "ua": "Понеділок-П’ятниця, 9:00-18:00", "en": "Monday-Friday, 9:00 AM - 6:00 PM" },
-    { "id": "option3", "ua": "Субота-Неділя, 10:00-16:00", "en": "Saturday-Sunday, 10:00 AM - 4:00 PM" }
+    { "id": "option2", "ua": "Регулярні", "en": "Regularly" },
+    { "id": "option3", "ua": "Сезонні", "en": "Seasonal" },
+    { "id": "option4", "ua": "Понеділок-П’ятниця, 9:00-18:00", "en": "Monday-Friday, 9:00 AM - 6:00 PM" },
+    { "id": "option5", "ua": "Субота-Неділя, 10:00-16:00", "en": "Saturday-Sunday, 10:00 AM - 4:00 PM" }
 ]

@@ -5,7 +5,8 @@ import { fetchJson } from "../../helpers/fetchData";
 import { saveJsonFile } from "../../helpers/updateData";
 import { generateUniqueId } from "../../helpers/createId";
 import type { Contact, LocalizedPartnerData, Partner } from "../PartnersPage/PartnersPage";
-import { Loader } from "../../components/Loader/Loader";
+import { useLoader } from "../../helpers/LoaderHook";
+
 
 const CONTACT_OPTIONS = [
   "instagram",
@@ -32,9 +33,10 @@ export const PartnerEditPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [partner, setPartner] = useState<Partner>(emptyPartner);
-  const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+
+  const { setLoading } = useLoader();
 
   useEffect(() => {
     if (id && id !== "new") {
@@ -50,7 +52,7 @@ export const PartnerEditPage = () => {
     }
 
   }, [id]);
-console.log(id)
+  console.log(id)
   const updateField = (field: keyof Partner, value: unknown) => {
     setPartner((prev) => ({ ...prev, [field]: value }));
   };
@@ -94,48 +96,47 @@ console.log(id)
   };
 
   const handleSave = async () => {
-  if (!isValid()) {
-    alert("Будь ласка, заповніть всі поля");
-    return;
-  }
-
-  setSaving(true);
-console.log(id)
-  try {
-    const partners = await fetchJson<Partner[]>("partners.json");
-    let updated: Partner[];
-
-    if (id === "new") {
-      const existingIds = new Set(partners.map((p) => p.id));
-      const newId = generateUniqueId(existingIds);
-
-      const newPartner = { ...partner, id: newId };
-      console.log(newPartner)
-      updated = [...partners, newPartner];
-
-      setPartner(newPartner);
-    } else {
-      const partnerExists = partners.some((p) => p.id === partner.id);
-      if (partnerExists) {
-        updated = partners.map((p) => (p.id === partner.id ? partner : p));
-      } else {
-        updated = [...partners, partner];
-      }
+    if (!isValid()) {
+      alert("Будь ласка, заповніть всі поля");
+      return;
     }
 
-    await saveJsonFile("partners.json", updated);
-    alert("Збережено");
-    navigate("/partners");
-  } catch (e) {
-    alert("Сталася помилка при збереженні");
-    console.log(e);
-  } finally {
-    setSaving(false);
-  }
-};
+    setSaving(true);
+    console.log(id)
+    try {
+      const partners = await fetchJson<Partner[]>("partners.json");
+      let updated: Partner[];
+
+      if (id === "new") {
+        const existingIds = new Set(partners.map((p) => p.id));
+        const newId = generateUniqueId(existingIds);
+
+        const newPartner = { ...partner, id: newId };
+        console.log(newPartner)
+        updated = [...partners, newPartner];
+
+        setPartner(newPartner);
+      } else {
+        const partnerExists = partners.some((p) => p.id === partner.id);
+        if (partnerExists) {
+          updated = partners.map((p) => (p.id === partner.id ? partner : p));
+        } else {
+          updated = [...partners, partner];
+        }
+      }
+
+      await saveJsonFile("partners.json", updated);
+      alert("Збережено");
+      navigate("/partners");
+    } catch (e) {
+      alert("Сталася помилка при збереженні");
+      console.log(e);
+    } finally {
+      setSaving(false);
+    }
+  };
 
 
-  if (loading) return <Loader/>;
   if (error) return <p>{error}</p>;
 
   return (

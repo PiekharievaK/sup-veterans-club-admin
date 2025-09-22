@@ -5,13 +5,13 @@ import { saveJsonFile } from "../../helpers/updateData";
 import s from "./DonationsPage.module.scss";
 import type { Donation } from "../../types/donates";
 import { generateUniqueId } from "../../helpers/createId";
-import { Loader } from "../../components/Loader/Loader";
+import { useLoader } from "../../helpers/LoaderHook";
+
 
 export const DonationsPage = () => {
   const [donations, setDonations] = useState<Donation[]>([]);
   const [editing, setEditing] = useState<Donation | undefined>(undefined);
-  const [loading, setLoading] = useState(false);
-
+  const { setLoading } = useLoader();
 
   useEffect(() => {
 
@@ -79,7 +79,7 @@ export const DonationsPage = () => {
         {donations.map((d) => (
           <li key={d.id} className={s.item}>
             <svg className={s.icon}>
-              <use xlinkHref={`#${d.icon}`} />
+              <use xlinkHref={`/sprite.svg#icon-${d.icon}`} />
             </svg>
             <div className={s.text}>
               <strong className={s.title}>{d.ua.title}</strong>
@@ -104,7 +104,7 @@ export const DonationsPage = () => {
           onSave={handleSave}
         />
       )}
-      {loading && <Loader />}
+
     </div>
   );
 };

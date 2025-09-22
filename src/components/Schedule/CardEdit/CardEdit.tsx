@@ -53,7 +53,7 @@ export const ScheduleCardEdit = ({
           <option value="">Select...</option>
           {programs.map((program) => (
             <option key={program.category} value={program.category}>
-              {program.en.title}
+              {program.ua.title}
             </option>
           ))}
         </select>
@@ -81,6 +81,15 @@ export const ScheduleCardEdit = ({
           min={1}
           value={item.slots}
           onChange={(e) => updateField("slots", Number(e.target.value))}
+        />
+      </label>
+
+      <label>
+        Посилання на захід *опціонально:
+        <input
+          type="text"
+          value={item.link}
+          onChange={(e) => updateField("link", e.target.value)}
         />
       </label>
 

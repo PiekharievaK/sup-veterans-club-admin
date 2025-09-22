@@ -1,7 +1,7 @@
 export type Benefit = {
   icon: string;
   ua: string;
-  en:string;
+  en: string;
 };
 
 export type ProgramData = {

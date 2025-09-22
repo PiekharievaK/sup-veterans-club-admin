@@ -5,6 +5,7 @@ export type ScheduleItem = {
   timeStart: string;
   timeEnd: string;
   location: string;
+  link?: string;
   instructors: string[];
   slots: number;
 };

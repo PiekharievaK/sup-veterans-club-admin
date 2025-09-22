@@ -73,7 +73,6 @@
   gap: 8px;
 }
 
-
 .edit,
 .delete {
   padding: 6px 14px;
@@ -86,9 +85,8 @@
   user-select: none;
 }
 
-
 .edit {
-  background-color: #007bff;  
+  background-color: #007bff;
   color: white;
 }
 
@@ -96,9 +94,8 @@
   background-color: #0056b3;
 }
 
-
 .delete {
-  background-color: #dc3545;  
+  background-color: #dc3545;
   color: white;
   margin-left: 8px;
 }
@@ -106,7 +103,6 @@
 .delete:hover {
   background-color: #a71d2a;
 }
-
 
 .edit:focus,
 .delete:focus {

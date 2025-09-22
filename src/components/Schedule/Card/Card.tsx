@@ -13,11 +13,12 @@ interface Props {
 export const ScheduleCard = ({ item, instructors, isInPast, onEdit, onDelete }: Props) => {
     return (
         <div className={s.item}>
-            <p className={`${s.data} ${isInPast? s.past: ""}`}><b>Дата:</b> {item.date.split("-").reverse().join(" ").replace(/^(\d{2}) (\d{2})/, "$2.$1")}</p>
+            <p className={`${s.data} ${isInPast ? s.past : ""}`}><b>Дата:</b> {item.date.split("-").reverse().join(" ").replace(/^(\d{2}) (\d{2})/, "$2.$1")}</p>
             <p><b>Тип:</b> {item.type}</p>
             <p><b>Час:</b> {item.timeStart} - {item.timeEnd}</p>
             <p><b>Розташування:</b> {item.location}</p>
             <p><b>Місця:</b> {item.slots}</p>
+            {item.link && <p><b>Посилання: </b><a href={item.link} target="blank" className={s.link}>{item.link}</a></p>}
             <p>
                 <b>Інструктори:</b>{" "}
                 {item.instructors

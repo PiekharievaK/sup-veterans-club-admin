@@ -43,5 +43,15 @@
 
 .data {
   background-color: #0ecc4d96;
-  &.past{background-color: #ccbf0e96;}
+  &.past {
+    background-color: #ccbf0e96;
+  }
+}
+
+.link {
+  color: rgb(68, 126, 11);
+  text-decoration: none;
+  :hover {
+    color: rgb(54, 100, 9);
+  }
 }
