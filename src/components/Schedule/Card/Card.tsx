@@ -5,14 +5,15 @@ import s from "./Card.module.scss";
 interface Props {
     item: ScheduleItem;
     instructors: Instructor[];
+    isInPast: boolean;
     onEdit: () => void;
     onDelete: () => void;
 }
 
-export const ScheduleCard = ({ item, instructors, onEdit, onDelete }: Props) => {
+export const ScheduleCard = ({ item, instructors, isInPast, onEdit, onDelete }: Props) => {
     return (
         <div className={s.item}>
-            <p className={s.data}><b>Дата:</b> {item.date}</p>
+            <p className={`${s.data} ${isInPast? s.past: ""}`}><b>Дата:</b> {item.date.split("-").reverse().join(" ").replace(/^(\d{2}) (\d{2})/, "$2.$1")}</p>
             <p><b>Тип:</b> {item.type}</p>
             <p><b>Час:</b> {item.timeStart} - {item.timeEnd}</p>
             <p><b>Розташування:</b> {item.location}</p>

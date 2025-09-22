@@ -1,0 +1,149 @@
+.CoachPage {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  .section {
+    margin-bottom: 1rem;
+    label {
+      display: block;
+      margin-bottom: 0.2rem;
+      font-weight: bold;
+    }
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.4rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .langWrapper {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    .langBlock {
+      flex: 1;
+      textarea {
+        min-height: 100px;
+      }
+    }
+  }
+
+
+  .buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+}
+
+.photoPreview {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  img {
+    max-width: 120px;
+    max-height: 120px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+}
+
+.addPhotoRow {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+
+  input {
+    flex: 1;
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+
+  button {
+    padding: 6px 12px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+
+
+  .socialRow {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    select,
+    input {
+      padding: 0.3rem;
+    }
+    button {
+      padding: 0.3rem 0.5rem;
+      background: #eee;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+  }
+
+.photoRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+
+  input {
+    flex: 1;
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+
+  img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  .buttonsCol {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    button {
+      padding: 4px 8px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+  }
+}
+
+textarea {
+  resize: none;
+}
+.save {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+}
+.cancel {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+}

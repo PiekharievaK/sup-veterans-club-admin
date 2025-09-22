@@ -1,0 +1,93 @@
+.PartnerEditPage {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fafafa;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc;
+}
+.PartnerEditPage h2 {
+  margin-bottom: 15px;
+}
+label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+fieldset {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  border-radius: 7px;
+}
+legend {
+  font-weight: 700;
+  padding: 0 6px;
+}
+.contactRow {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.contactRow select {
+  min-width: 140px;
+}
+button {
+  cursor: pointer;
+}
+button[type="button"] {
+  background-color: #e76f51;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+button[type="button"]:hover {
+  background-color: #d65a3e;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+.actions button {
+  background-color: #2a9d8f;
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 7px;
+  font-weight: 600;
+}
+.actions button:hover {
+  background-color: #264653;
+}
+
+.preview {
+  margin-top: 10px;
+  text-align: center;
+}
+.preview img {
+  max-width: 150px;
+  max-height: 100px;
+  object-fit: contain;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}

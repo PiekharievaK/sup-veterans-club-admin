@@ -7,7 +7,7 @@ export const SideBar = () => {
         <nav className={s.nav}>
             <NavLink to={'/schedule'} className={s.navItem}>Розклад</NavLink>
             <NavLink to={'/coaches'} className={s.navItem}>Тренери</NavLink>
-            <NavLink to={'/events'} className={s.navItem}>Заходи</NavLink>
+            {/* <NavLink to={'/events'} className={s.navItem}>Заходи</NavLink> */}
             <NavLink to={'/partners'} className={s.navItem}>Партнери</NavLink>
             <NavLink to={'/donations'} className={s.navItem}>Дружні збори</NavLink>
             <NavLink to={'/contacts'} className={s.navItem}>Контакти</NavLink>

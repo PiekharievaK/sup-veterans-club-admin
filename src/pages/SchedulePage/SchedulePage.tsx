@@ -19,6 +19,7 @@ export const SchedulePage = () => {
     const [addingNew, setAddingNew] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState("");
+    const [filter, setFilter] = useState<"all" | "past" | "upcoming">("all");
 
     const [newItem, setNewItem] = useState<Omit<ScheduleItem, "id">>({
         date: "",
@@ -29,6 +30,8 @@ export const SchedulePage = () => {
         instructors: [],
         slots: 1,
     });
+
+    const today = new Date().toISOString().split("T")[0]
 
     useEffect(() => {
         const fetchData = async () => {
@@ -95,7 +98,7 @@ export const SchedulePage = () => {
         setScheduleData((prev) =>
             prev.map((item) =>
                 item.id === id
-                    ? { ...updatedItem, id } // сохраняем id
+                    ? { ...updatedItem, id }
                     : item
             )
         );
@@ -149,16 +152,27 @@ export const SchedulePage = () => {
         await handleSave();
     };
 
+    const todayStr = new Date().toISOString().slice(0, 10); // 'YYYY-MM-DD'
+
     const filteredData = scheduleData.filter((item) => {
         const search = searchTerm.toLowerCase();
         const instructorNames = item.instructors
             .map((id) => availableInstructors.find((i) => i.id === id)?.id || "")
             .join(" ");
-        return (
+
+        const matchesSearch =
             item.date.includes(search) ||
             item.type.toLowerCase().includes(search) ||
-            instructorNames.includes(search)
-        );
+            instructorNames.includes(search);
+
+        if (!matchesSearch) return false;
+
+        if (filter === "past") {
+            return item.date < todayStr;
+        } else if (filter === "upcoming") {
+            return item.date >= todayStr;
+        }
+        return true; // all
     });
 
     return (
@@ -175,6 +189,33 @@ export const SchedulePage = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 disabled={loading}
             />
+
+            <div className={s.filters}>
+                <button
+                    className={filter === "all" ? s.active : ""}
+                    onClick={() => setFilter("all")}
+                    disabled={loading}
+                >
+                    Всі заходи
+                </button>
+                <button
+                    className={filter === "past" ? s.active : ""}
+                    onClick={() => setFilter("past")}
+                    disabled={loading}
+                >
+                    Минулі
+                </button>
+                <button
+                    className={filter === "upcoming" ? s.active : ""}
+                    onClick={() => setFilter("upcoming")}
+                    disabled={loading}
+                >
+                    Майбутні
+                </button>
+                <p>Усього заходів {scheduleData.length}</p>
+                <p>Заходів у фільтрі {filteredData.length}</p>
+                
+            </div>
 
             <button className={s.addBtn} onClick={() => setAddingNew(true)} disabled={loading}>
                 Додати захід
@@ -207,6 +248,7 @@ export const SchedulePage = () => {
                         <ScheduleCard
                             key={item.id}
                             item={item}
+                            isInPast={item.date < today}
                             instructors={availableInstructors}
                             onEdit={() => toggleEdit(item.id)}
                             onDelete={() => deleteItem(item.id)}

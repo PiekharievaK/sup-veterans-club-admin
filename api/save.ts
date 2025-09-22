@@ -4,13 +4,13 @@ import axios, { AxiosError } from "axios";
 const TOKEN = process.env.JSON_TOKEN;
 const REPO = process.env.REPO;
 const BRANCH = process.env.BRANCH || "main";
-const FILE_PATH = "schedule.json";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "PUT") {
     res.status(405).json({ message: "Method not allowed" });
     return;
   }
+const { path } = req.query;
 
   if (!TOKEN) {
     res.status(500).json({ message: "GitHub token is not set in env" });
@@ -19,7 +19,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     const getRes = await axios.get(
-      `https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`,
+      `https://api.github.com/repos/${REPO}/contents/${path}`,
       {
         headers: {
           Authorization: `token ${TOKEN}`,
@@ -38,9 +38,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     );
 
     const updateRes = await axios.put(
-      `https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`,
+      `https://api.github.com/repos/${REPO}/contents/${path}`,
       {
-        message: `Update ${FILE_PATH} via admin panel`,
+        message: `Update ${path} via admin panel`,
         content,
         sha,
         branch: BRANCH,
