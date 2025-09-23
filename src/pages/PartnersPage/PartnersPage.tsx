@@ -4,6 +4,7 @@ import s from "./PartnersPage.module.scss";
 import { fetchJson } from "../../helpers/fetchData";
 import { saveJsonFile } from "../../helpers/updateData";
 import { useLoader } from "../../helpers/LoaderHook";
+import { PermissionWrapper } from "../../components/PermissionWrapper/PermissionWrapper";
 
 
 export type Contact = {
@@ -69,9 +70,11 @@ export const PartnersPage = () => {
     <div className={s.PartnersListPage}>
       <div className={s.header}>
         <h2>Партнери</h2>
-        <button onClick={() => navigate("/partners/new")} className={s.addBtn}>
-          ➕ Додати партнера
-        </button>
+        <PermissionWrapper>
+          <button onClick={() => navigate("/partners/new")} className={s.addBtn}>
+            ➕ Додати партнера
+          </button>
+        </PermissionWrapper>
       </div>
 
       <div className={s.grid}>
@@ -81,8 +84,12 @@ export const PartnersPage = () => {
             <h3>{partner.ua.name}</h3>
             <p>{partner.ua.description}</p>
             <div className={s.actions}>
-              <button onClick={() => navigate(`/partners/${partner.id}`)}>Редагувати</button>
-              <button onClick={() => handleDelete(partner.id)}>Видалити</button>
+              <PermissionWrapper>
+                <button onClick={() => navigate(`/partners/${partner.id}`)}>Редагувати</button>
+              </PermissionWrapper>
+              <PermissionWrapper>
+                <button onClick={() => handleDelete(partner.id)}>Видалити</button>
+              </PermissionWrapper>
             </div>
           </div>
         ))}

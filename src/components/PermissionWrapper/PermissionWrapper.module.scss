@@ -1,0 +1,15 @@
+.permissionWrapper {
+  cursor: pointer;
+}
+
+.permissionWrapper.blocked * {
+  cursor: pointer;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.permission-wrapper.allowed * {
+  pointer-events: auto;
+  opacity: 1;
+  cursor: pointer;
+}

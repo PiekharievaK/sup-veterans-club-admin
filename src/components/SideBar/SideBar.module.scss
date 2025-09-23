@@ -1,9 +1,17 @@
 .nav {
   display: flex;
-  flex-direction: column;
-  border-right: 1px solid black;
-  width: 300px;
+  flex-wrap: wrap;
+  gap: 40px;
+  border-bottom: 1px solid black;
   padding: 15px;
+  height: fit-content;
+  @media (min-width: 500px) {
+    flex-direction: column;
+    height: auto;
+    width: 300px;
+    border-bottom: none;
+    border-right: 1px solid black;
+  }
 
   &Item {
     font-size: 24px;

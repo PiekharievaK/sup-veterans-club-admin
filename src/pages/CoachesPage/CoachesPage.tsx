@@ -5,6 +5,7 @@ import { fetchJson } from "../../helpers/fetchData";
 import { saveJsonFile } from "../../helpers/updateData";
 import s from "./CoachesPage.module.scss";
 import { useLoader } from "../../helpers/LoaderHook";
+import { PermissionWrapper } from "../../components/PermissionWrapper/PermissionWrapper";
 
 
 export const CoachesListPage = () => {
@@ -51,9 +52,11 @@ export const CoachesListPage = () => {
         <div className={s.CoachesListPage}>
             <div className={s.header}>
                 <h2>Список тренерів</h2>
-                <button className={s.addBtn} onClick={() => navigate("/coaches/new")}>
-                    ➕ Додати тренера
-                </button>
+                <PermissionWrapper>
+                    <button className={s.addBtn} onClick={() => navigate("/coaches/new")}>
+                        ➕ Додати тренера
+                    </button>
+                </PermissionWrapper>
             </div>
 
             <div className={s.grid}>
@@ -63,8 +66,12 @@ export const CoachesListPage = () => {
                         <h3>{coach.ua.name}</h3>
                         <p>{coach.ua.role}</p>
                         <div className={s.actions}>
-                            <button onClick={() => navigate(`/coaches/${coach.id}`)}>Редагувати</button>
-                            <button onClick={() => handleDelete(coach.id)}>Видалити</button>
+                            <PermissionWrapper>
+                                <button className={s.change} onClick={() => navigate(`/coaches/${coach.id}`)}>Редагувати</button>
+                            </PermissionWrapper>
+                            <PermissionWrapper>
+                                <button onClick={() => handleDelete(coach.id) } className={s.delete}>Видалити</button>
+                            </PermissionWrapper>
                         </div>
                     </div>
                 ))}

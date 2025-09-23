@@ -26,21 +26,17 @@ export const AppRoutes = () => {
 
                     <Route element={<ProtectedRoute roleRequired={["coach", "admin"]} />}>
                         <Route path="/schedule" element={<SchedulePage />} />
-                    </Route>
-
-                    <Route element={<ProtectedRoute roleRequired="admin" />}>
                         <Route path="/coaches" element={<CoachesListPage />} />
-                        <Route path="/coaches/:id" element={<CoachPage />} />
-                        <Route path="/coaches/new" element={<CoachPage isNew={true} />} />
-                        <Route path="/contacts" element={<ContactsPage />} />
                         <Route path="/partners" element={<PartnersPage />} />
-                        <Route path="/partners/:id" element={<PartnerEditPage />} />
+                        <Route path="/programs" element={<ProgramsPage />} />
                         <Route path="/donations" element={<DonationsPage />} />
                     </Route>
 
-
                     <Route element={<ProtectedRoute roleRequired="admin" />}>
-                        <Route path="/programs" element={<ProgramsPage />} />
+                        <Route path="/coaches/:id" element={<CoachPage />} />
+                        <Route path="/coaches/new" element={<CoachPage isNew={true} />} />
+                        <Route path="/contacts" element={<ContactsPage />} />
+                        <Route path="/partners/:id" element={<PartnerEditPage />} />
                         <Route path="/programs/:id" element={<ProgramEditPage />} />
                     </Route>
 

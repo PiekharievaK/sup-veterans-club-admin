@@ -6,6 +6,7 @@ import { saveJsonFile } from "../../helpers/updateData";
 import type { ProgramData } from "../../types/programs";
 import { useLoader } from "../../helpers/LoaderHook";
 import SCHEDULE_OPTIONS from '../../data/scheduleOptions.json';
+import { PermissionWrapper } from "../../components/PermissionWrapper/PermissionWrapper";
 
 
 export const ProgramsPage = () => {
@@ -76,8 +77,12 @@ export const ProgramsPage = () => {
                             </p>
 
                             <div className={s.programActions}>
-                                <button onClick={() => handleEdit(program.id)}>Редагувати</button>
-                                <button onClick={() => handleDelete(program.id)}>Видалити</button>
+                                <PermissionWrapper>
+                                    <button className={s.change} onClick={() => handleEdit(program.id)}>Редагувати</button>
+                                </PermissionWrapper>
+                                <PermissionWrapper>
+                                    <button className={s.delete} onClick={() => handleDelete(program.id)}>Видалити</button>
+                                </PermissionWrapper>
                             </div>
                         </div>
                     </div>
@@ -85,9 +90,11 @@ export const ProgramsPage = () => {
             </div>
 
             <div className={s.createNewButtonContainer}>
-                <button onClick={handleCreateNew} className={s.createNewButton}>
-                    + Створити нову програму
-                </button>
+                <PermissionWrapper>
+                    <button onClick={handleCreateNew} className={s.createNewButton}>
+                        + Створити нову програму
+                    </button>
+                </PermissionWrapper>
             </div>
         </div>
     );

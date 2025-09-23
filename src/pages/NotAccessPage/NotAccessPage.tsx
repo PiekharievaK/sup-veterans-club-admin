@@ -8,12 +8,5 @@ export const NotAccessPage = () => {
             Oopps! У вашого користувача немає доступу до взаємодвї з цією сторінкою.
         </h4>
 
-        <p>
-            {"Доступна строінка:  "}
-            <a href="/schedule" className={s.link}>
-                розклад
-            </a>
-        </p>
-
     </div>
 }

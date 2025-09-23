@@ -52,7 +52,7 @@ console.log(username, password)
                 sessionStorage.setItem('role', role3);
 
             }
-             navigate('/schedule');
+             navigate('/coaches');
         } else {
             setError('Невірний логін або пароль');
         }

@@ -20,7 +20,7 @@ export const Header = () => {
 
       {isLoggedIn && role && (
         <div className={s.userInfo}>
-          <span>Вітаємо, {role}!</span>
+          <span>{role}</span>
           <button onClick={handleLogout} className={s.logoutBtn}>
             Вийти
           </button>

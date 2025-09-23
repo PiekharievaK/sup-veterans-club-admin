@@ -6,6 +6,7 @@ import s from "./DonationsPage.module.scss";
 import type { Donation } from "../../types/donates";
 import { generateUniqueId } from "../../helpers/createId";
 import { useLoader } from "../../helpers/LoaderHook";
+import { PermissionWrapper } from "../../components/PermissionWrapper/PermissionWrapper";
 
 
 export const DonationsPage = () => {
@@ -70,9 +71,11 @@ export const DonationsPage = () => {
     <div className={s.page}>
       <div className={s.header}>
         <h1>Донати</h1>
-        <button className={s.newButton} onClick={handleCreateNew}>
-          + Новий донат
-        </button>
+        <PermissionWrapper>
+          <button className={s.newButton} onClick={handleCreateNew}>
+            + Новий донат
+          </button>
+        </PermissionWrapper>
       </div>
 
       <ul className={s.list}>
@@ -86,12 +89,17 @@ export const DonationsPage = () => {
               <p className={s.summary}>{d.ua.summary}</p>
             </div>
             <div className={s.actions}>
-              <button className={s.edit} onClick={() => { setEditing(d); }}>
-                Редагувати
-              </button>
-              <button className={s.delete} onClick={() => handleDelete(d.id)}>
-                Видалити
-              </button>
+              <PermissionWrapper>
+
+                <button className={s.edit} onClick={() => { setEditing(d); }}>
+                  Редагувати
+                </button>
+              </PermissionWrapper>
+              <PermissionWrapper>
+                <button className={s.delete} onClick={() => handleDelete(d.id)}>
+                  Видалити
+                </button>
+              </PermissionWrapper>
             </div>
           </li>
         ))}

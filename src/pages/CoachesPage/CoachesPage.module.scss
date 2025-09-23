@@ -72,15 +72,23 @@
         &:hover {
           background-color: #ddd;
         }
-
-        &:last-child {
+        &.change {
+        color: rgb(221, 162, 0);
+        border-color: rgb(221, 206, 0);
+        }
+        
+        &.delete {
           color: #d00;
           border-color: #d00;
 
-          &:hover {
-            background-color: #fce8e8;
-          }
         }
+       & .change,
+       & .delete{
+            &:hover {
+          background-color: #fce8e8;
+        }
+        }
+      
       }
     }
   }
