@@ -1,7 +1,6 @@
 import type { ScheduleItem } from "../../../types/schedule";
 import type { Instructor } from "../../../types/coach";
 import s from "./Card.module.scss";
-import { PermissionWrapper } from "../../PermissionWrapper/PermissionWrapper";
 
 interface Props {
     item: ScheduleItem;
@@ -27,12 +26,8 @@ export const ScheduleCard = ({ item, instructors, isInPast, onEdit, onDelete }: 
                     .join(", ")}
             </p>
             <div className={s.buttonBox}>
-                <PermissionWrapper>
                     <button className={s.change} onClick={onEdit}>Редагувати</button>
-                </PermissionWrapper>
-                <PermissionWrapper>
                     <button className={s.delete} onClick={onDelete}>Видалити</button>
-                </PermissionWrapper>
             </div>
         </div>
     );

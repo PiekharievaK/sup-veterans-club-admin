@@ -9,7 +9,6 @@ import { ScheduleCard } from "../../components/Schedule/Card/Card";
 import { ScheduleCardEdit } from "../../components/Schedule/CardEdit/CardEdit";
 import { generateUniqueId } from "../../helpers/createId";
 import { useLoader } from "../../helpers/LoaderHook";
-import { PermissionWrapper } from "../../components/PermissionWrapper/PermissionWrapper";
 
 
 export const SchedulePage = () => {
@@ -178,7 +177,7 @@ export const SchedulePage = () => {
         } else if (filter === "upcoming") {
             return item.date >= todayStr;
         }
-        return true; 
+        return true;
     });
 
     return (
@@ -213,7 +212,6 @@ export const SchedulePage = () => {
                 <button
                     className={filter === "upcoming" ? s.active : ""}
                     onClick={() => setFilter("upcoming")}
-
                 >
                     Майбутні
                 </button>
@@ -222,9 +220,9 @@ export const SchedulePage = () => {
 
             </div>
 
-            <PermissionWrapper>  <button className={s.addBtn} onClick={() => setAddingNew(true)} >
+            <button className={s.addBtn} onClick={() => setAddingNew(true)} >
                 Додати захід
-            </button></PermissionWrapper>
+            </button>
 
             {addingNew && (
                 <ScheduleCardEdit
