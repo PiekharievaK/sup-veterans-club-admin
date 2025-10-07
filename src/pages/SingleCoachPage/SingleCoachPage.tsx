@@ -191,15 +191,6 @@ export const CoachPage = ({ isNew = false }: { isNew?: boolean }) => {
     setIsDirty(false);
   };
 
-  const addNewPhotoField = () => {
-
-    setEditedCoach({
-      ...editedCoach,
-      photo: [...editedCoach.photo, ""],
-    });
-    setIsDirty(true);
-  };
-
   if (error) return <p>{error}</p>;
 
   return (
@@ -253,11 +244,11 @@ export const CoachPage = ({ isNew = false }: { isNew?: boolean }) => {
             type="text"
             value={newPhotoUrl}
             onChange={(e) => setNewPhotoUrl(e.target.value)}
-            placeholder="Додати нове фото"
+            placeholder="Додати нове фото (URL)"
           />
           {newPhotoUrl && (
             <img
-              src={newPhotoUrl || "https://i.ibb.co/hXCwYmK/4054617.png"}
+              src={newPhotoUrl}
               alt="Прев'ю"
               onError={(e) => {
                 e.currentTarget.onerror = null;
@@ -267,10 +258,25 @@ export const CoachPage = ({ isNew = false }: { isNew?: boolean }) => {
           )}
         </div>
 
-        <button onClick={addNewPhotoField} className={s.addPhoto}>
+        <button
+          onClick={() => {
+            if (!newPhotoUrl.trim()) return;
+
+            setEditedCoach({
+              ...editedCoach,
+              photo: [...editedCoach.photo, newPhotoUrl.trim()],
+            });
+
+            setNewPhotoUrl("");
+            setIsDirty(true);
+          }}
+          className={s.addPhoto}
+          disabled={!newPhotoUrl.trim()}
+        >
           Додати це фото
         </button>
       </div>
+
 
       <div className={s.langWrapper}>
         {Object.values(Lang).map((lang) => (
