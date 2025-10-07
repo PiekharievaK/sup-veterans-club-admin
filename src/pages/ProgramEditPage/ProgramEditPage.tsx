@@ -238,6 +238,9 @@ export const ProgramEditPage = () => {
 
             <label>
                 Іконка програми:
+                {program.icon && <svg className={s.icon}>
+                    <use href={`/sprite.svg#icon-${program.icon}`} />
+                </svg>}
                 <IconPicker onChange={(icon) => {
                     if (program) {
                         setProgram({

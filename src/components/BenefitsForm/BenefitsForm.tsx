@@ -37,7 +37,7 @@ export const BenefitForm: FC<BenefitFormProps> = ({
                 />
             </div>
 
-            <h4>Обрати зображення</h4>
+            <h4>Обрати іконку</h4>
             <div className={s.iconPicker}>
                 <IconPicker onChange={onIconSelect} />
             </div>
